@@ -1,9 +1,11 @@
 // Author: Micah McCollum
 // FILE: vm_manager.c
 // Description: Code for the functions that are used in main.c and referenced
-//      in header file.
+//      in the header file.
 
 #include "vm_manager.h"
+static int lastUsed[TLB_SIZE] = {0};
+static int timeCounter = 0;
 
 // Initializing Page Table when no frames have been loaded yet
 // variable int i: used for marking Page Table number, -1 shows no frames loaded
@@ -35,7 +37,7 @@ int translateAddress(unsigned int logicalAddress, PageTableEntry pageTable[],
 
   // TLB Lookup for page first
   for(int i = 0; i < TLB_SIZE; i++) {
-	  if(tlb[i].isValid && tlb[i].pageNumber == page_number) {
+  if(tlb[i].isValid && (unsigned int)tlb[i].pageNumber == page_number) {
 		  int frame_number = tlb[i].frameNumber;
 		  tlbHits++;
 		  return (frame_number * FRAME_SIZE) + offset;

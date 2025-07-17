@@ -1,6 +1,6 @@
 // Author: Micah McCollum
 // FILE: vm_manager.h
-// Description: Header file for Project 3 that defines constants, data structures, and
+// Description: Header file for the memory manager that defines constants, data structures, and
 // function prototypes used for managing virtual memory. This includes translating
 // logical addresses to physical addresses, and managing TLB and page faults.
 
@@ -18,10 +18,9 @@
 #define FRAME_SIZE 256       // Number of bytes in a frame
 #define NUM_FRAMES 256       // Total number of frames in physical memory
 #define NUM_PAGES 256        // Total number of pages in logical memory
-#define TLB_SIZE 16          // Size of the Translation Lookaside Buffer (TLB)
+#define TLB_SIZE 16          // Size of the TL Buffer (TLB)
 
 // Data structures used in virtual memory management
-
 // PageTableEntry: Represents an entry in the page table
 typedef struct {
     int pageNumber; // Logical page number

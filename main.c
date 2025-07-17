@@ -11,7 +11,7 @@ int tlbHits = 0;
 int main() {
     // Open the file containing the logical addresses
     FILE *address_file = fopen("addresses.txt", "r");
-    if (!address_file) {
+    if(!address_file) {
         perror("Error opening addresses.txt");
         return EXIT_FAILURE;
     }
@@ -30,7 +30,7 @@ int main() {
     unsigned int logicalAddress;
 
     // Read and translate addresses until the end of the file
-    while (fscanf(address_file, "%u", &logicalAddress) != EOF) {
+    while(fscanf(address_file, "%u", &logicalAddress) != EOF) {
         totalAddresses++;
         translatedAddress = translateAddress(logicalAddress, pageTable, tlb, physicalMemory);
 
@@ -49,7 +49,8 @@ int main() {
 
     // Output final statistics for the session
     printf("\n");
-    printf("Micah McCollum - Project Number: 3\n");
+    printf("Micah McCollum - vm_manager\n");
+    printf("Total addresses seen: %d\n", totalAddresses),
     printf("TLB Hit Rate: %.2f%%\n", (tlbHits / (double) totalAddresses) * 100.0);
     printf("Page Fault Rate: %.2f%%\n", (pageFaults / (double) totalAddresses) * 100.0);
 
